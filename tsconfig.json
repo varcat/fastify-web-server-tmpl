@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "sourceMap": true,
+  },
+  "extends": [
+    "@tsconfig/recommended/tsconfig.json",
+    "@tsconfig/node24/tsconfig.json"
+  ]
+}
