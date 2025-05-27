@@ -28,6 +28,7 @@
     "ts-node": "^10.9.2"
   },
   "dependencies": {
+    "@fastify/autoload": "^6.3.0",
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.2",
     "@fastify/type-provider-typebox": "^5.1.0",
