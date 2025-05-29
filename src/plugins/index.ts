@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import swagger from "@fastify/swagger";
-import swaggerUi from "@fastify/swagger-ui";
+
 import { networkInterfaces } from "node:os";
 
 function getLocalIP() {
@@ -16,8 +16,9 @@ function getLocalIP() {
 }
 
 export async function loadPlugins(fastify: FastifyInstance) {
-
   await fastify.register(swagger, {
+    hiddenTag: "internal",
+    swagger: {},
     openapi: {
       openapi: "3.0.0",
       info: {
@@ -32,27 +33,5 @@ export async function loadPlugins(fastify: FastifyInstance) {
         },
       ],
     },
-  });
-  await fastify.register(swaggerUi, {
-    routePrefix: "/api_doc",
-    uiConfig: {
-      filter: true,
-      docExpansion: "list",
-      deepLinking: true,
-    },
-    uiHooks: {
-      onRequest: function (request, reply, next) {
-        next();
-      },
-      preHandler: function (request, reply, next) {
-        next();
-      },
-    },
-    staticCSP: true,
-    transformStaticCSP: (header) => header,
-    transformSpecification: (swaggerObject, request, reply) => {
-      return swaggerObject;
-    },
-    transformSpecificationClone: true,
   });
 }
